@@ -1,5 +1,5 @@
 # AI Labs
-
+AI Labs submission by Atharva Agarwala, 2024ADPS0856G.
 Each lab is in `<lab>/deliverables/`, which holds the code, the captured output, a report answering every question in the lab sheet, and the LLM prompts used.
 
 | Folder | Lab | Run |
