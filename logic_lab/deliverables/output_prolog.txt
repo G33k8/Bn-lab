@@ -1,0 +1,27 @@
+--- Task 6
+?- can_move(a,b).
+      -> true
+?- can_move(a,c).
+      -> false
+--- Task 7
+?- valid_move(a,b).
+      -> true
+?- valid_move(b,c).
+      -> true
+?- valid_move(a,c).
+      -> false
+--- Task 7 challenge: proposed Move(a,c)
+?- valid_move(a,c).
+      -> false
+--- Task 8
+?- reduce_speed.
+      -> true
+--- Extension: verify whole plans
+?- valid_plan([at(package,a),at(robot,a)],[pickup(a),move(a,b),move(b,c),drop(c)],[at(package,c)]).
+      -> true
+?- valid_plan([at(package,a),at(robot,a)],[move(a,b),pickup(b),move(b,c),drop(c)],[at(package,c)]).
+      -> false
+?- valid_plan([at(package,a),at(robot,a)],[pickup(a),move(a,c),drop(c)],[at(package,c)]).
+      -> false
+?- valid_plan([at(package,a),at(robot,a)],[move(a,b),move(b,c)],[at(package,c)]).
+      -> false

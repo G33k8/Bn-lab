@@ -1,0 +1,46 @@
+Initially applicable actions: ['Move(A,B)', 'PickUp(Package,A)'] 
+
+Lab-sheet example plan valid? False (fails at step 2: PickUp(Package,B))
+
+=== Test A: solvable warehouse problem
+Initial: {At(Package,A), At(Robot,A)}
+Goal   : {At(Package,C)}
+Plan   : PickUp(Package,A), Move(A,B), Move(B,C), Drop(Package,C)
+  S0 = {At(Package,A), At(Robot,A)}
+  --PickUp(Package,A)--> S1 = {At(Robot,A), Holding(Package)}
+  --Move(A,B)--> S2 = {At(Robot,B), Holding(Package)}
+  --Move(B,C)--> S3 = {At(Robot,C), Holding(Package)}
+  --Drop(Package,C)--> S4 = {At(Package,C), At(Robot,C)}
+Independently validated: True 
+
+=== Test B: PickUp removed (impossible)
+Initial: {At(Package,A), At(Robot,A)}
+Goal   : {At(Package,C)}
+No plan found
+
+=== Test C: irrelevant robot-only action Move(A,C)
+Initial: {At(Package,A), At(Robot,A)}
+Goal   : {At(Package,C)}
+Plan   : PickUp(Package,A), Move(A,C), Drop(Package,C)
+  S0 = {At(Package,A), At(Robot,A)}
+  --PickUp(Package,A)--> S1 = {At(Robot,A), Holding(Package)}
+  --Move(A,C)--> S2 = {At(Robot,C), Holding(Package)}
+  --Drop(Package,C)--> S3 = {At(Package,C), At(Robot,C)}
+Independently validated: True 
+
+=== Test C': goal At(Robot,C) (contrast)
+Initial: {At(Package,A), At(Robot,A)}
+Goal   : {At(Robot,C)}
+Plan   : Move(A,C)
+  S0 = {At(Package,A), At(Robot,A)}
+  --Move(A,C)--> S1 = {At(Package,A), At(Robot,C)}
+Independently validated: True 
+
+=== Test D: goal already satisfied
+Initial: {At(Package,C), At(Robot,A)}
+Goal   : {At(Package,C)}
+Plan   : 
+  S0 = {At(Package,C), At(Robot,A)}
+Independently validated: True 
+
+All assertions passed.

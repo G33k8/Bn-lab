@@ -1,0 +1,105 @@
+=== Task 3: testing A* (Manhattan)
+
+--- Test 1: original warehouse
+Solution found. Path length: 40. States expanded: 64
+Path: (1, 1) -> (1, 2) -> (1, 3) -> (1, 4) -> (1, 5) -> (2, 5) -> (3, 5) -> (4, 5) -> (5, 5) -> (5, 6) -> (5, 7) -> (5, 8) -> (5, 9) -> (5, 10) -> (5, 11) -> (5, 12) -> (5, 13) -> (4, 13) -> (3, 13) -> (3, 12) -> (3, 11) -> (3, 10) -> (3, 9) -> (3, 8) -> (3, 7) -> (2, 7) -> (1, 7) -> (1, 8) -> (1, 9) -> (1, 10) -> (1, 11) -> (1, 12) -> (1, 13) -> (1, 14) -> (1, 15) -> (2, 15) -> (3, 15) -> (4, 15) -> (5, 15) -> (6, 15) -> (7, 15)
+#################
+#S****#*********#
+#.###*#*#######*#
+#...#*#*******#*#
+###.#*#######*#*#
+#...#*********#*#
+#.###########.#*#
+#.............#G#
+#################
+
+--- Test 2: trivial case
+Solution found. Path length: 1. States expanded: 2
+Path: (1, 1) -> (1, 2)
+#####
+#SG##
+#####
+
+--- Test 3: no solution
+No solution. States expanded: 9
+
+--- Test 4: alternative paths
+Solution found. Path length: 6. States expanded: 7
+Path: (1, 1) -> (1, 2) -> (1, 3) -> (1, 4) -> (1, 5) -> (1, 6) -> (1, 7)
+#########
+#S*****G#
+#.#####.#
+#.#####.#
+#.......#
+#########
+
+=== Task 5: BFS vs A* on the warehouse
+
+--- BFS
+Solution found. Path length: 40. States expanded: 64
+Path: (1, 1) -> (1, 2) -> (1, 3) -> (1, 4) -> (1, 5) -> (2, 5) -> (3, 5) -> (4, 5) -> (5, 5) -> (5, 6) -> (5, 7) -> (5, 8) -> (5, 9) -> (5, 10) -> (5, 11) -> (5, 12) -> (5, 13) -> (4, 13) -> (3, 13) -> (3, 12) -> (3, 11) -> (3, 10) -> (3, 9) -> (3, 8) -> (3, 7) -> (2, 7) -> (1, 7) -> (1, 8) -> (1, 9) -> (1, 10) -> (1, 11) -> (1, 12) -> (1, 13) -> (1, 14) -> (1, 15) -> (2, 15) -> (3, 15) -> (4, 15) -> (5, 15) -> (6, 15) -> (7, 15)
+#################
+#S****#*********#
+#.###*#*#######*#
+#...#*#*******#*#
+###.#*#######*#*#
+#...#*********#*#
+#.###########.#*#
+#.............#G#
+#################
+
+Measure            BFS    A*
+Solution found     yes   yes
+Path length         40    40
+States expanded     64    64
+
+=== Task 6: heuristic investigation
+
+Map: warehouse
+Heuristic          Found  Length  Expanded
+Manhattan            yes      40        64
+h = 0                yes      40        64
+Euclidean            yes      40        64
+2 x Manhattan        yes      40        64
+
+Map: alternative
+Heuristic          Found  Length  Expanded
+Manhattan            yes       6         7
+h = 0                yes       6        13
+Euclidean            yes       6         7
+2 x Manhattan        yes       6         7
+
+Map: open 10x10
+Heuristic          Found  Length  Expanded
+Manhattan            yes      18        19
+h = 0                yes      18       100
+Euclidean            yes      18        83
+2 x Manhattan        yes      18        19
+
+Map: trap
+Heuristic          Found  Length  Expanded
+Manhattan            yes      12        24
+h = 0                yes      12        36
+Euclidean            yes      12        29
+2 x Manhattan        yes      16        19
+
+Trap map, Manhattan:
+###########
+#S........#
+#***#...#.#
+#.#*******#
+#..#...##*#
+#.....###G#
+########### 
+
+Trap map, 2 x Manhattan:
+###########
+#S........#
+#*..#...#.#
+#*#...****#
+#*.#.**##*#
+#*****###G#
+########### 
+
+
+All assertions passed.

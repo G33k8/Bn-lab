@@ -1,0 +1,210 @@
+======================================================================
+FIRST-ORDER CPT
+======================================================================
+
+<START>
+  P(the) = 1.0000
+
+cat
+  P(ran) = 0.3333
+  P(sat) = 0.6667
+
+dog
+  P(ran) = 0.3333
+  P(sat) = 0.6667
+
+mat
+  P(<END>) = 1.0000
+
+on
+  P(the) = 1.0000
+
+park
+  P(<END>) = 1.0000
+
+ran
+  P(to) = 1.0000
+
+rug
+  P(<END>) = 1.0000
+
+sat
+  P(on) = 1.0000
+
+the
+  P(cat) = 0.2500
+  P(dog) = 0.2500
+  P(mat) = 0.1667
+  P(park) = 0.1667
+  P(rug) = 0.1667
+
+to
+  P(the) = 1.0000
+
+======================================================================
+FIRST-ORDER NORMALIZATION
+======================================================================
+<START>    -> 1.0000000000 -> PASS
+the        -> 1.0000000000 -> PASS
+cat        -> 1.0000000000 -> PASS
+sat        -> 1.0000000000 -> PASS
+on         -> 1.0000000000 -> PASS
+mat        -> 1.0000000000 -> PASS
+rug        -> 1.0000000000 -> PASS
+dog        -> 1.0000000000 -> PASS
+ran        -> 1.0000000000 -> PASS
+to         -> 1.0000000000 -> PASS
+park       -> 1.0000000000 -> PASS
+
+======================================================================
+NEXT-WORD PREDICTIONS
+======================================================================
+<START>    -> the
+             {'the': 1.0}
+the        -> cat
+             {'cat': 0.25, 'mat': 0.16666666666666666, 'rug': 0.16666666666666666, 'dog': 0.25, 'park': 0.16666666666666666}
+cat        -> sat
+             {'sat': 0.6666666666666666, 'ran': 0.3333333333333333}
+dog        -> sat
+             {'sat': 0.6666666666666666, 'ran': 0.3333333333333333}
+sat        -> on
+             {'on': 1.0}
+ran        -> to
+             {'to': 1.0}
+
+======================================================================
+20 FIRST-ORDER SAMPLED SENTENCES
+======================================================================
+ 1. the cat sat on the dog ran to the cat sat on the cat sat on the dog ran to the dog sat on the mat
+ 2. the park
+ 3. the dog sat on the rug
+ 4. the park
+ 5. the cat sat on the cat sat on the mat
+ 6. the mat
+ 7. the dog sat on the mat
+ 8. the rug
+ 9. the dog sat on the mat
+10. the park
+11. the mat
+12. the mat
+13. the mat
+14. the mat
+15. the rug
+16. the cat sat on the cat sat on the park
+17. the dog ran to the dog sat on the park
+18. the rug
+19. the park
+20. the dog sat on the dog sat on the cat ran to the mat
+
+======================================================================
+5 FIRST-ORDER GREEDY SENTENCES
+======================================================================
+1. the cat sat on the cat sat on the cat sat on the cat sat on the cat sat on the cat sat on the cat sat on the cat
+2. the cat sat on the cat sat on the cat sat on the cat sat on the cat sat on the cat sat on the cat sat on the cat
+3. the cat sat on the cat sat on the cat sat on the cat sat on the cat sat on the cat sat on the cat sat on the cat
+4. the cat sat on the cat sat on the cat sat on the cat sat on the cat sat on the cat sat on the cat sat on the cat
+5. the cat sat on the cat sat on the cat sat on the cat sat on the cat sat on the cat sat on the cat sat on the cat
+
+======================================================================
+5 FIRST-ORDER SAMPLED SENTENCES
+======================================================================
+1. the park
+2. the cat ran to the rug
+3. the park
+4. the rug
+5. the mat
+
+======================================================================
+SECOND-ORDER CPT
+======================================================================
+
+('<START>', 'the')
+  P(cat) = 0.5000
+  P(dog) = 0.5000
+
+('cat', 'ran')
+  P(to) = 1.0000
+
+('cat', 'sat')
+  P(on) = 1.0000
+
+('dog', 'ran')
+  P(to) = 1.0000
+
+('dog', 'sat')
+  P(on) = 1.0000
+
+('on', 'the')
+  P(mat) = 0.5000
+  P(rug) = 0.5000
+
+('ran', 'to')
+  P(the) = 1.0000
+
+('sat', 'on')
+  P(the) = 1.0000
+
+('the', 'cat')
+  P(ran) = 0.3333
+  P(sat) = 0.6667
+
+('the', 'dog')
+  P(ran) = 0.3333
+  P(sat) = 0.6667
+
+('the', 'mat')
+  P(<END>) = 1.0000
+
+('the', 'park')
+  P(<END>) = 1.0000
+
+('the', 'rug')
+  P(<END>) = 1.0000
+
+('to', 'the')
+  P(park) = 1.0000
+
+======================================================================
+SECOND-ORDER NORMALIZATION
+======================================================================
+('<START>', 'the')        -> 1.0000000000 -> PASS
+('the', 'cat')            -> 1.0000000000 -> PASS
+('cat', 'sat')            -> 1.0000000000 -> PASS
+('sat', 'on')             -> 1.0000000000 -> PASS
+('on', 'the')             -> 1.0000000000 -> PASS
+('the', 'mat')            -> 1.0000000000 -> PASS
+('the', 'rug')            -> 1.0000000000 -> PASS
+('the', 'dog')            -> 1.0000000000 -> PASS
+('dog', 'sat')            -> 1.0000000000 -> PASS
+('dog', 'ran')            -> 1.0000000000 -> PASS
+('ran', 'to')             -> 1.0000000000 -> PASS
+('to', 'the')             -> 1.0000000000 -> PASS
+('the', 'park')           -> 1.0000000000 -> PASS
+('cat', 'ran')            -> 1.0000000000 -> PASS
+
+======================================================================
+5 SECOND-ORDER GREEDY SENTENCES
+======================================================================
+1. the cat sat on the mat
+2. the cat sat on the mat
+3. the cat sat on the mat
+4. the cat sat on the mat
+5. the cat sat on the mat
+
+======================================================================
+5 SECOND-ORDER SAMPLED SENTENCES
+======================================================================
+1. the cat sat on the mat
+2. the cat sat on the rug
+3. the cat ran to the park
+4. the dog ran to the park
+5. the dog ran to the park
+
+======================================================================
+MODEL COMPARISON
+======================================================================
+Vocabulary size: 12
+First-order observed probability entries: 17
+Second-order observed probability entries: 18
+First-order zero-probability contexts: 1
+Second-order zero-probability contexts: 130

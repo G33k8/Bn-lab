@@ -1,0 +1,53 @@
+=== Task 1: linear model (affine + sigmoid, no hidden layer)
+initial loss 0.7309  final loss 0.6931  (ln 2 = 0.6931)
+probabilities [0.5, 0.5, 0.5, 0.5] labels [0, 0, 0, 0]
+correct: 2/4
+
+=== Task 4A: 2-2-1 tanh network, random init, seed 0
+initial loss 0.7102  final loss 0.000012
+  x=[0.0, 0.0]  P(y=1)=0.0000  label=0
+  x=[0.0, 1.0]  P(y=1)=1.0000  label=1
+  x=[1.0, 0.0]  P(y=1)=1.0000  label=1
+  x=[1.0, 1.0]  P(y=1)=0.0000  label=0
+all four correct: True 
+
+=== Task 4B: backpropagation check (fresh random net, seed 1)
+dL/dW1 (autograd):
+ [[ 0.002373  0.003541]
+ [-0.010122 -0.008249]]
+max |autograd - finite difference| = 4.18e-11
+max |mean of 4 per-example grads - batch grad| = 6.94e-18
+
+=== Task 4C: symmetry experiment (all weights and biases zero)
+step    0 loss 0.6931  W1 rows [0.0, 0.0] [0.0, 0.0]  identical=True  W1.grad=[[0.0, 0.0], [0.0, 0.0]]
+step    1 loss 0.6931  W1 rows [0.0, 0.0] [0.0, 0.0]  identical=True  W1.grad=[[0.0, 0.0], [0.0, 0.0]]
+step   10 loss 0.6931  W1 rows [0.0, 0.0] [0.0, 0.0]  identical=True  W1.grad=[[0.0, 0.0], [0.0, 0.0]]
+step  100 loss 0.6931  W1 rows [0.0, 0.0] [0.0, 0.0]  identical=True  W1.grad=[[0.0, 0.0], [0.0, 0.0]]
+step 1000 loss 0.6931  W1 rows [0.0, 0.0] [0.0, 0.0]  identical=True  W1.grad=[[0.0, 0.0], [0.0, 0.0]]
+identical nonzero init after 2000 Adam steps: rows identical=True, labels=[0, 1, 1, 1]
+
+=== Task 4D: activation experiment (seed 0, same init seed for each)
+activation  final loss  4/4?   ||grad W1|| @ step 10
+sigmoid        0.00003  True                 0.00240
+tanh           0.00001  True                 0.03736
+relu           0.00001  True                 0.04159
+
+Success rate over 20 seeds (5000 Adam steps, lr 0.1):
+  sigmoid  7/20
+  tanh     8/20
+  relu     8/20
+
+=== Task 5: three-class extension (softmax + cross-entropy)
+final weight matrix shape: (3, 2)  logits per example: 3
+initial loss 1.0240 (ln 3 = 1.0986)  final loss 0.000003
+  x=[0.0, 0.0]  p=[1.0, 0.0, 0.0]  argmax=0  target=0
+  x=[0.0, 1.0]  p=[0.0, 1.0, 0.0]  argmax=1  target=1
+  x=[1.0, 0.0]  p=[0.0, 1.0, 0.0]  argmax=1  target=1
+  x=[1.0, 1.0]  p=[0.0, 0.0, 1.0]  argmax=2  target=2
+all four correct: True
+sum of p for x=[0,1]: 1.000000000000000
+max |softmax(z+100) - softmax(z)| = 8.89e-21
+naive float32 exp(z+100) softmax -> [[nan, nan, nan]] (overflow without max-subtraction)
+max |dL/dz - (p - y)/N| = 4.24e-22
+
+All checks passed.
